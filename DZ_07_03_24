@@ -40,14 +40,15 @@ WHERE EXISTS (
 
 -- Вывести два самых дорогих товара из категории Beverages из USA
 
-SELECT Products.ProductName, Products.Price
+SELECT Products.ProductName, Products.UnitPrice
 FROM Products
 JOIN Categories ON Products.CategoryID = Categories.CategoryID
-
+WHERE Categories.CategoryName = 'Beverages'
 AND Products.SupplierID IN (
     SELECT SupplierID
     FROM Suppliers
     WHERE Country = 'USA'
 )
-ORDER BY Products.Price DESC
+ORDER BY Products.UnitPrice DESC
 LIMIT 2;
+
